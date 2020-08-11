@@ -7,7 +7,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 const styles = {
     application: {
         height: '100vh',
-        fontFamily: 'Barlow'
+        fontFamily: 'Barlow',
     }
 }
 
