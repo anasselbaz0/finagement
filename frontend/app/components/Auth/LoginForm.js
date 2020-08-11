@@ -3,8 +3,10 @@ import {connect} from 'react-redux';
 import withStyles from "@material-ui/core/styles/withStyles";
 import COLORS from "../../utils/colors";
 import Button from "../Button/Button";
-import {openSignUp, setLoginEmail, setLoginPassword} from "../../state/auth/actions";
+import {openSignUp, setLoginEmail, setLoginPassword, tryLogin} from "../../state/auth/actions";
 import TextInput from "../Form/TextInput";
+import Dimmer from "semantic-ui-react/dist/commonjs/modules/Dimmer";
+import Loader from "semantic-ui-react/dist/commonjs/elements/Loader";
 
 const styles = {
     form: {
@@ -47,7 +49,13 @@ class LoginForm extends Component {
                         onChange={this.props.setLoginPassword}
                     />
                 </form>
-                <Button> Login </Button>
+                <Button onClick={() => this.props.tryLogin(
+                    this.props.login.email,
+                    this.props.login.password
+                )}> Login </Button>
+                <Dimmer size={'massive'} active={this.props.login.loading}>
+                    <Loader />
+                </Dimmer>
                 <div className={classes.instructions}>
                     <span className={classes.link}> Forgot password? </span> <br/>
                     <span> You don't have an account? <span className={classes.link} onClick={this.props.openSignUp}> Create a new account! </span> </span>
@@ -68,6 +76,7 @@ const mapDispatchToProps = (dispatch) => {
         setLoginEmail: (event) => dispatch(setLoginEmail(event.target.value)),
         setLoginPassword: (event) => dispatch(setLoginPassword(event.target.value)),
         openSignUp: () => dispatch(openSignUp()),
+        tryLogin: (email, password) => dispatch(tryLogin(email, password)),
     }
 }
 

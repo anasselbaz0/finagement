@@ -1,10 +1,12 @@
 import {
+    LOGIN_FAIL,
+    LOGIN_SUCCESS,
     OPEN_LOGIN,
     OPEN_SIGNUP,
     SET_LOGIN_EMAIL,
     SET_LOGIN_PASSWORD,
     SET_SIGNUP_EMAIL, SET_SIGNUP_EMAIL_CONFIRMATION,
-    SET_SIGNUP_PASSWORD, SET_SIGNUP_PASSWORD_CONFIRMATION
+    SET_SIGNUP_PASSWORD, SET_SIGNUP_PASSWORD_CONFIRMATION, TRY_LOGIN
 } from "./actions";
 
 const initialState = {
@@ -13,12 +15,14 @@ const initialState = {
     login: {
         email: '',
         password: '',
+        loading: false,
     },
     signUp: {
         email: '',
         password: '',
         emailConfirmation: '',
         passwordConfirmation: '',
+        loading: false,
     },
     loggedIn: false,
 };
@@ -70,7 +74,7 @@ export default function authReducer(state = initialState, action) {
             return {
                 ...state,
                 signUp: {
-                    ...state.login,
+                    ...state.signUp,
                     password: action.payload
                 },
             };
@@ -88,8 +92,36 @@ export default function authReducer(state = initialState, action) {
             return {
                 ...state,
                 signUp: {
-                    ...state.login,
+                    ...state.signUp,
                     passwordConfirmation: action.payload
+                },
+            };
+        }
+        case TRY_LOGIN: {
+            return {
+                ...state,
+                login: {
+                    ...state.login,
+                    loading: true,
+                },
+            };
+        }
+        case LOGIN_SUCCESS: {
+            return {
+                ...state,
+                login: {
+                    ...state.login,
+                    loggedIn: true,
+                    loading: false,
+                },
+            };
+        }
+        case LOGIN_FAIL: {
+            return {
+                ...state,
+                login: {
+                    ...state.login,
+                    loading: false,
                 },
             };
         }

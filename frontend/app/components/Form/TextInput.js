@@ -49,7 +49,6 @@ class TextInput extends Component {
                 className={classes.formInput}
                 required={this.props.required}
                 variant="outlined"
-                id="standard-required"
                 type={this.props.type}
                 label={this.props.label}
                 value={this.props.value}

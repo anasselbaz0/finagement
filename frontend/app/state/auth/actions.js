@@ -1,3 +1,7 @@
+/**
+ UI
+ **/
+
 export const OPEN_LOGIN = 'OPEN_LOGIN';
 export const OPEN_SIGNUP = 'OPEN_SIGNUP';
 export const SET_LOGIN_EMAIL = 'SET_LOGIN_EMAIL';
@@ -58,5 +62,37 @@ export function setSignUpPasswordConfirmation(password) {
     return {
         type: SET_SIGNUP_PASSWORD_CONFIRMATION,
         payload: password,
+    }
+}
+
+
+/**
+ Authentication
+ **/
+
+export const TRY_LOGIN = 'TRY_LOGIN';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+
+export function tryLogin(email, password) {
+    return {
+        type: TRY_LOGIN,
+        payload: {
+            email,
+            password
+        },
+    }
+}
+
+export function loginSuccess(user) {
+    return {
+        type: LOGIN_SUCCESS,
+        payload: user
+    }
+}
+
+export function loginFail() {
+    return {
+        type: LOGIN_FAIL,
     }
 }
