@@ -2,27 +2,34 @@ import {
     LOGIN_FAIL,
     LOGIN_SUCCESS,
     OPEN_LOGIN,
-    OPEN_SIGNUP,
-    SET_LOGIN_EMAIL,
+    OPEN_SIGNUP, RESET_FORMS,
     SET_LOGIN_PASSWORD,
-    SET_SIGNUP_EMAIL, SET_SIGNUP_EMAIL_CONFIRMATION,
-    SET_SIGNUP_PASSWORD, SET_SIGNUP_PASSWORD_CONFIRMATION, TRY_LOGIN
+    SET_LOGIN_USERNAME,
+    SET_SIGNUP_EMAIL,
+    SET_SIGNUP_PASSWORD,
+    SET_SIGNUP_PASSWORD_CONFIRMATION,
+    SET_SIGNUP_USERNAME, SIGNUP_FAIL, SIGNUP_SUCCESS,
+    TRY_LOGIN, TRY_SIGNUP
 } from "./actions";
 
-const initialState = {
+export const initialState = {
     loginOpened: true,
     signUpOpened: false,
     login: {
-        email: '',
+        username: '',
         password: '',
         loading: false,
+        success: false,
+        fail: false,
     },
     signUp: {
+        username: '',
         email: '',
         password: '',
-        emailConfirmation: '',
         passwordConfirmation: '',
         loading: false,
+        success: false,
+        fail: false,
     },
     loggedIn: false,
 };
@@ -43,12 +50,12 @@ export default function authReducer(state = initialState, action) {
                 signUpOpened: true,
             };
         }
-        case SET_LOGIN_EMAIL: {
+        case SET_LOGIN_USERNAME: {
             return {
                 ...state,
                 login: {
                     ...state.login,
-                    email: action.payload
+                    username: action.payload
                 },
             };
         }
@@ -79,12 +86,12 @@ export default function authReducer(state = initialState, action) {
                 },
             };
         }
-        case SET_SIGNUP_EMAIL_CONFIRMATION: {
+        case SET_SIGNUP_USERNAME: {
             return {
                 ...state,
                 signUp: {
                     ...state.signUp,
-                    emailConfirmation: action.payload
+                    username: action.payload
                 },
             };
         }
@@ -111,9 +118,9 @@ export default function authReducer(state = initialState, action) {
                 ...state,
                 login: {
                     ...state.login,
-                    loggedIn: true,
                     loading: false,
                 },
+                loggedIn: true,
             };
         }
         case LOGIN_FAIL: {
@@ -122,6 +129,50 @@ export default function authReducer(state = initialState, action) {
                 login: {
                     ...state.login,
                     loading: false,
+                },
+            };
+        }
+
+
+        // ******************** SIGNUP *********************
+
+        case TRY_SIGNUP: {
+            return {
+                ...state,
+                signUp: {
+                    ...state.signUp,
+                    loading: true,
+                },
+            };
+        }
+        case SIGNUP_SUCCESS: {
+            return {
+                ...state,
+                signUp: {
+                    ...state.signUp,
+                    loading: false,
+                    success: true,
+                },
+            };
+        }
+        case SIGNUP_FAIL: {
+            return {
+                ...state,
+                signUp: {
+                    ...state.signUp,
+                    loading: false,
+                    fail: true
+                },
+            };
+        }
+        case RESET_FORMS: {
+            return {
+                ...state,
+                signUp: {
+                    ...initialState.signUp
+                },
+                login: {
+                    ...initialState.login
                 },
             };
         }

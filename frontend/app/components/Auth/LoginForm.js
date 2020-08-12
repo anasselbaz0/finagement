@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import withStyles from "@material-ui/core/styles/withStyles";
 import COLORS from "../../utils/colors";
 import Button from "../Button/Button";
-import {openSignUp, setLoginEmail, setLoginPassword, tryLogin} from "../../state/auth/actions";
+import {openSignUp, setLoginEmail, setLoginPassword, setLoginUsername, tryLogin} from "../../state/auth/actions";
 import TextInput from "../Form/TextInput";
 import Dimmer from "semantic-ui-react/dist/commonjs/modules/Dimmer";
 import Loader from "semantic-ui-react/dist/commonjs/elements/Loader";
@@ -37,9 +37,9 @@ class LoginForm extends Component {
                 <form className={classes.form} noValidate autoComplete="off">
                     <TextInput
                         required
-                        label="E-mail"
-                        value={this.props.login.email}
-                        onChange={this.props.setLoginEmail}
+                        label="Username"
+                        value={this.props.login.username}
+                        onChange={this.props.setLoginUsername}
                     />
                     <TextInput
                         required
@@ -50,7 +50,7 @@ class LoginForm extends Component {
                     />
                 </form>
                 <Button onClick={() => this.props.tryLogin(
-                    this.props.login.email,
+                    this.props.login.username,
                     this.props.login.password
                 )}> Login </Button>
                 <Dimmer size={'massive'} active={this.props.login.loading}>
@@ -73,10 +73,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setLoginEmail: (event) => dispatch(setLoginEmail(event.target.value)),
+        setLoginUsername: (event) => dispatch(setLoginUsername(event.target.value)),
         setLoginPassword: (event) => dispatch(setLoginPassword(event.target.value)),
         openSignUp: () => dispatch(openSignUp()),
-        tryLogin: (email, password) => dispatch(tryLogin(email, password)),
+        tryLogin: (username, password) => dispatch(tryLogin(username, password)),
     }
 }
 
