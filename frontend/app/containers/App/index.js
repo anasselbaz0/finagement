@@ -6,6 +6,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import HomePage from "../HomePage/HomePage";
 import 'semantic-ui-css/semantic.min.css';
 import {connect} from 'react-redux';
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const styles = {
     application: {
@@ -18,6 +20,17 @@ export class App extends React.Component {
     render() {
         const {classes} = this.props;
             return <div className={classes.application}>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={true}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
                 <Switch>
                     <Route exact path="/">
                         {this.props.isLoggedIn ? <HomePage/> : <AuthPage />}
@@ -30,7 +43,7 @@ export class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.auth.login.loggedIn,
+        isLoggedIn: state.auth.loggedIn,
     }
 }
 

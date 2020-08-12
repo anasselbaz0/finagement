@@ -1,18 +1,41 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects';
-import {loginFail, loginSuccess, TRY_LOGIN} from "./actions";
-import request from "../../utils/request";
+import {call, put, select, takeLatest} from 'redux-saga/effects';
+import {loginFail, loginSuccess, signUpFail, signUpSuccess, TRY_LOGIN} from "./actions";
+import {API, postRequest} from "../../utils/request";
+import {User} from "../../components/Auth/Model";
+
+
+// ************************** LOGIN **************************
 
 export function* login(action) {
-  console.log(33)
-  const email = action.payload.email;
-  const password = action.payload.password;
-  const requestURL = `https://randomuser.me/api`;
-  try {
-    // Call our request helper (see 'utils/request')
-    const user = yield call(request, requestURL);
-    yield put(loginSuccess(user));
-  } catch (err) {
-    yield put(loginFail());
-  }
+    const requestURL = `${API}/auth/signin`;
+    try {
+        const response = yield call(postRequest, requestURL, action.payload);
+        if (response.id) {
+            const user = new User(
+                response.id,
+                response.username,
+                response.email,
+                response.roles
+            );
+            const token = `${response.tokenType} ${response.accessToken}`
+            yield put(loginSuccess(user, token));
+        } else {
+            yield put(loginFail());
+        }
+    } catch (err) {
+        yield put(loginFail());
+    }
 }
 
+
+// ************************** SIGNUP **************************
+
+export function* signUp(action) {
+    const requestURL = `${API}/auth/signup`;
+    try {
+        yield call(postRequest, requestURL, action.payload);
+        yield put(signUpSuccess());
+    } catch (err) {
+        yield put(signUpFail());
+    }
+}
