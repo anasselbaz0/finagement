@@ -80,20 +80,23 @@ export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 
-export function tryLogin(email, password) {
+export function tryLogin(username, password) {
     return {
         type: TRY_LOGIN,
         payload: {
-            email,
+            username,
             password
         },
     }
 }
 
-export function loginSuccess(user) {
+export function loginSuccess(user, token) {
     return {
         type: LOGIN_SUCCESS,
-        payload: user
+        payload: {
+            user,
+            token
+        }
     }
 }
 

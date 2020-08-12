@@ -32,6 +32,8 @@ export const initialState = {
         fail: false,
     },
     loggedIn: false,
+    user: {},
+    token: '',
 };
 
 export default function authReducer(state = initialState, action) {
@@ -119,8 +121,11 @@ export default function authReducer(state = initialState, action) {
                 login: {
                     ...state.login,
                     loading: false,
+                    success: true,
                 },
                 loggedIn: true,
+                user: action.payload.user,
+                token: action.payload.token,
             };
         }
         case LOGIN_FAIL: {
@@ -129,6 +134,7 @@ export default function authReducer(state = initialState, action) {
                 login: {
                     ...state.login,
                     loading: false,
+                    fail: true,
                 },
             };
         }

@@ -43,7 +43,7 @@ export class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.auth.login.loggedIn,
+        isLoggedIn: state.auth.loggedIn,
     }
 }
 

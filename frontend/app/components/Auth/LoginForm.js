@@ -3,10 +3,17 @@ import {connect} from 'react-redux';
 import withStyles from "@material-ui/core/styles/withStyles";
 import COLORS from "../../utils/colors";
 import Button from "../Button/Button";
-import {openSignUp, setLoginEmail, setLoginPassword, setLoginUsername, tryLogin} from "../../state/auth/actions";
+import {
+    openSignUp,
+    resetForms,
+    setLoginPassword,
+    setLoginUsername,
+    tryLogin
+} from "../../state/auth/actions";
 import TextInput from "../Form/TextInput";
 import Dimmer from "semantic-ui-react/dist/commonjs/modules/Dimmer";
 import Loader from "semantic-ui-react/dist/commonjs/elements/Loader";
+import {toast} from "react-toastify";
 
 const styles = {
     form: {
@@ -31,6 +38,17 @@ const styles = {
 class LoginForm extends Component {
 
     render() {
+        if (this.props.login.fail) {
+            toast.error('Failed to login :/ Try again !', {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            this.props.resetForms();
+        }
         const {classes} = this.props;
         return (
             <React.Fragment>
@@ -49,7 +67,7 @@ class LoginForm extends Component {
                         onChange={this.props.setLoginPassword}
                     />
                 </form>
-                <Button onClick={() => this.props.tryLogin(
+                <Button onClick={() => this.tryLogin(
                     this.props.login.username,
                     this.props.login.password
                 )}> Login </Button>
@@ -63,6 +81,22 @@ class LoginForm extends Component {
             </React.Fragment>
         );
     }
+
+    tryLogin = (username, password) => {
+        if (username.length === 0 || password.length === 0) {
+            toast.warning('The username or the password or both are missing!', {
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        } else {
+            this.props.tryLogin(username, password);
+        }
+    }
+
 }
 
 const mapStateToProps = (state) => {
@@ -77,6 +111,7 @@ const mapDispatchToProps = (dispatch) => {
         setLoginPassword: (event) => dispatch(setLoginPassword(event.target.value)),
         openSignUp: () => dispatch(openSignUp()),
         tryLogin: (username, password) => dispatch(tryLogin(username, password)),
+        resetForms: () => dispatch(resetForms()),
     }
 }
 
