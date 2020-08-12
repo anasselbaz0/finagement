@@ -12,7 +12,7 @@
 	<artifactId>finagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>finagement</name>
-	<description>Back-End Finagement Java 11</description>
+	<description>Finagement</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -22,10 +22,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -63,7 +59,17 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-orgjson</artifactId>
+            <version>0.11.2</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
