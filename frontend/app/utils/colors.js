@@ -2,14 +2,17 @@ let COLORS;
 export default COLORS = {
 
     white: '#fff',
-    lightGray: '#a7a7a7',
+    whiteo: 'rgba(255,255,255,0.04)',
+    lightGray: '#bdbcbc',
     gray: '#464b4c',
 
+    c0: '#1f2324',
     c1: '#273032',
     c2: '#313839',
     c3: '#255C69',
     c4: '#027C99',
     c5: '#03ADD5',
+    c6: '#71e3ff',
 
     c1o: '#121617ef',
     c2o: '#313839ef',

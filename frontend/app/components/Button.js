@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
-import COLORS from "../../utils/colors";
+import COLORS from "../utils/colors";
 
 const styles = {
     button: {
