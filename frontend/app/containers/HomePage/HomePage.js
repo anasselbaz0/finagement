@@ -8,6 +8,7 @@ import {contentHeight} from "../../utils/constants";
 import {Route, Switch} from "react-router-dom";
 import Welcome from "../../components/Welcome";
 import Profile from "../../components/Profile";
+import Exercises from "../Pages/Exercises";
 
 const styles = {
     page: {
@@ -31,7 +32,6 @@ class HomePage extends Component {
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
-            progress: undefined,
         });
     }
 
@@ -46,6 +46,7 @@ class HomePage extends Component {
                         <Switch>
                             <Route exact path="/" component={Welcome}/>
                             <Route exact path="/profile" component={Profile}/>
+                            <Route exact path="/exercises" component={Exercises}/>
                         </Switch>
                     </div>
                 </div>

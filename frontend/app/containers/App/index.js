@@ -24,7 +24,7 @@ export class App extends React.Component {
         const {classes} = this.props;
             return <div className={classes.application}>
                 <ToastContainer
-                    position="top-right"
+                    position="bottom-right"
                     autoClose={5000}
                     hideProgressBar={false}
                     newestOnTop={true}

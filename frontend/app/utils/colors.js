@@ -20,4 +20,7 @@ export default COLORS = {
     c4o: '#027C99ef',
     c5o: '#03ADD5ef',
     c8o: 'rgba(229,250,255,0.94)',
+
+    error: '#ff549f',
+
 };
