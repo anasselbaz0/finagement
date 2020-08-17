@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {withStyles} from "@material-ui/core";
-import COLORS from "../utils/colors";
+import COLORS from "../../utils/colors";
 import {connect} from "react-redux";
-import {sidebarWidth} from "../utils/constants";
+import {sidebarWidth} from "../../utils/constants";
 import {Link} from "react-router-dom";
 
 const styles = {

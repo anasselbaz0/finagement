@@ -5,8 +5,8 @@ import COLORS from "../../utils/colors";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {useFormik} from "formik";
 import * as Yup from 'yup';
-import TextInput from "../../components/Form/TextInput";
-import Button from "../../components/Button";
+import TextInput from "../Form/TextInput";
+import Button from "../General/Button";
 import {addExercise} from "../../state/exercises/actions";
 
 const styles = {

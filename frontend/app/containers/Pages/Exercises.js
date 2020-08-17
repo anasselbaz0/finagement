@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import withStyles from "@material-ui/core/styles/withStyles";
-import Button from "../../components/Button";
+import Button from "../../components/General/Button";
 import COLORS from "../../utils/colors";
 import Drawer from "@material-ui/core/Drawer";
-import AddExerciseDrawer from "./AddExerciseDrawer";
+import AddExerciseDrawer from "../../components/Exercises/AddExerciseDrawer";
+import ExerciseList from "../../components/Exercises/ExerciseList";
 
 const styles = {
     bar: {
@@ -12,6 +13,9 @@ const styles = {
         justifyContent: 'flex-end',
         backgroundColor: COLORS.whiteo,
     },
+    exerciseList: {
+
+    }
 }
 
 function Exercises(props) {
@@ -25,12 +29,10 @@ function Exercises(props) {
                 </Button>
             </div>
             <AddExerciseDrawer open={addDrawerOpened} onClose={() => setAddDrawerOpened(false)}/>
+            <ExerciseList/>
         </div>
     );
 }
 
-function mapStateToProps(state) {
-    return {};
-}
 
-export default withStyles(styles)(connect(mapStateToProps,)(Exercises));
+export default withStyles(styles)(connect(null)(Exercises));

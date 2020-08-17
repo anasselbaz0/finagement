@@ -2,7 +2,7 @@ let COLORS;
 export default COLORS = {
 
     white: '#fff',
-    whiteo: 'rgba(255,255,255,0.04)',
+    whiteo: 'rgba(255,255,255,0.05)',
     lightGray: '#bdbcbc',
     gray: '#464b4c',
 
@@ -22,5 +22,6 @@ export default COLORS = {
     c8o: 'rgba(229,250,255,0.94)',
 
     error: '#ff549f',
+    important: '#fff066',
 
 };

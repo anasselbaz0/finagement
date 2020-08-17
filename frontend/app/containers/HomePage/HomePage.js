@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {toast} from "react-toastify";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Masthead from "../../components/Masthead";
-import Sidebare from "../../components/Sidebare";
+import Masthead from "../../components/General/Masthead";
+import Sidebare from "../../components/General/Sidebare";
 import {contentHeight} from "../../utils/constants";
 import {Route, Switch} from "react-router-dom";
-import Welcome from "../../components/Welcome";
-import Profile from "../../components/Profile";
+import Welcome from "../../components/Temporary/Welcome";
+import Profile from "../../components/Temporary/Profile";
 import Exercises from "../Pages/Exercises";
 
 const styles = {

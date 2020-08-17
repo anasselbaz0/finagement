@@ -1,8 +1,8 @@
 import React from 'react';
 import {withStyles} from "@material-ui/core";
-import COLORS from "../utils/colors";
+import COLORS from "../../utils/colors";
 import Logo from "./Logo";
-import {mastheadHeight} from "../utils/constants";
+import {mastheadHeight} from "../../utils/constants";
 import {ExitToApp} from "@material-ui/icons";
 import {connect} from 'react-redux';
 

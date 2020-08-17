@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import withStyles from "@material-ui/core/styles/withStyles";
 import COLORS from "../../utils/colors";
-import Button from "../Button";
+import Button from "../General/Button";
 import {
     openLogin, resetForms,
     setSignUpEmail,
