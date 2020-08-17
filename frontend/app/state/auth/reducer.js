@@ -31,7 +31,8 @@ export const initialState = {
         success: false,
         fail: false,
     },
-    loggedIn: false,
+    loggedIn: false,  // for production
+    // loggedIn: true,  // for developement
     user: {},
     token: '',
 };

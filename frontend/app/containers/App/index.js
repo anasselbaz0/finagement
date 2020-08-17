@@ -8,11 +8,14 @@ import 'semantic-ui-css/semantic.min.css';
 import {connect} from 'react-redux';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import COLORS from "../../utils/colors";
 
 const styles = {
     application: {
         height: '100vh',
         fontFamily: 'Barlow',
+        background: COLORS.c1,
+        color: COLORS.white,
     }
 }
 
@@ -21,7 +24,7 @@ export class App extends React.Component {
         const {classes} = this.props;
             return <div className={classes.application}>
                 <ToastContainer
-                    position="top-right"
+                    position="bottom-right"
                     autoClose={5000}
                     hideProgressBar={false}
                     newestOnTop={true}
@@ -32,7 +35,7 @@ export class App extends React.Component {
                     pauseOnHover
                 />
                 <Switch>
-                    <Route exact path="/">
+                    <Route path="/">
                         {this.props.isLoggedIn ? <HomePage/> : <AuthPage />}
                     </Route>
                 </Switch>
