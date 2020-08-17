@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {withStyles} from "@material-ui/core";
 import COLORS from "../utils/colors";
-import Button from "./Button";
 import Logo from "./Logo";
 import {mastheadHeight} from "../utils/constants";
-import IconButton from '@material-ui/core/IconButton';
 import {ExitToApp} from "@material-ui/icons";
+import {connect} from 'react-redux';
 
 const styles = {
     masthead: {
@@ -18,8 +17,8 @@ const styles = {
     logoutButton: {
         color: COLORS.white,
         fontSize: '1rem',
-        marginRight: '2rem',
-        padding: '5px 1rem',
+        margin: '0 2rem',
+        padding: '6px 1rem',
         '&:hover': {
             background: COLORS.c1,
         },
@@ -30,18 +29,25 @@ const styles = {
     },
 }
 
-class Masthead extends Component {
-    render() {
-        const { classes } = this.props;
-        return (
-            <div className={classes.masthead}>
-                <Logo/>
-                <div className={classes.logoutButton} edge='start'>
+function Masthead(props) {
+    const {classes} = props;
+    return (
+        <div className={classes.masthead}>
+            <Logo/>
+            <div>
+                <span> {props.email} </span>
+                <span className={classes.logoutButton} edge='start'>
                     Logout <ExitToApp className={classes.logoutIcon}/>
-                </div>
+                </span>
             </div>
-        );
+        </div>
+    );
+}
+
+const mapStateToProps = (state) => {
+    return {
+        email: state.auth.user.email,
     }
 }
 
-export default withStyles(styles)(Masthead);
+export default connect(mapStateToProps)(withStyles(styles)(Masthead));

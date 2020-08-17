@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import Drawer from "@material-ui/core/Drawer";
 import COLORS from "../../utils/colors";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {useFormik} from "formik";
 import * as Yup from 'yup';
 import TextInput from "../../components/Form/TextInput";
-import SelectInput from "../../components/Form/SelectInput";
-import {MONTHS} from "../App/constants";
 import Button from "../../components/Button";
+import {addExercise} from "../../state/exercises/actions";
 
 const styles = {
     drawer: {
@@ -31,19 +31,22 @@ const AddExerciseDrawer = (props) => {
     const formik = useFormik({
         initialValues: {
             title: '',
-            month: '',
-            year: '',
+            month: new Date().getMonth(),
+            year: new Date().getFullYear(),
         },
         validationSchema: Yup.object({
             title: Yup.string().required('Required'),
-            month: Yup.string().required('Required'),
+            month: Yup.number()
+                .min(1, 'Month incorrect. Enter a Month number between 1 and 12.')
+                .max(12, 'Month incorrect. Enter a Month number between 1 and 12.')
+                .required('Required'),
             year: Yup.number()
                 .min(new Date().getFullYear(), 'Cannot create exercise with a year in the past!')
                 .max(new Date().getFullYear() + 100, 'That\'s too much future planning!')
                 .required('Required'),
         }),
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            props.addExercise(values, props.token)
         }
     });
     const {classes} = props;
@@ -59,9 +62,9 @@ const AddExerciseDrawer = (props) => {
                         onChange={formik.handleChange}
                         error={formik.errors.title}
                     />
-                    <SelectInput
+                    <TextInput
+                        type='number'
                         label='month'
-                        options={MONTHS}
                         value={formik.values.month}
                         onChange={formik.handleChange}
                         error={formik.errors.month}
@@ -78,6 +81,19 @@ const AddExerciseDrawer = (props) => {
             </div>
         </Drawer>
     );
+
 };
 
-export default withStyles(styles)(AddExerciseDrawer);
+const mapStateToProps = state => {
+    return {
+        token: state.auth.token,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addExercise: (exercise, token) => dispatch(addExercise(exercise, token)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(AddExerciseDrawer));
