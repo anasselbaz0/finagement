@@ -12,9 +12,9 @@ import COLORS from "../../utils/colors";
 const styles = {
   card: {
     width: '100%',
-    backgroundColor: COLORS.whiteo,
+    backgroundColor: COLORS.c3o,
     borderRadius: '3px',
-    color: COLORS.lightGray,
+    color: COLORS.c1,
   },
   content: {
     fontSize: '1rem',
@@ -33,9 +33,9 @@ const styles = {
   },
   label: {
     textTransform: 'uppercase',
-    fontSize: '.9rem',
-    fontWeight: 600,
-    letterSpacing: '1px',
+    fontSize: '.8rem',
+    fontWeight: 300,
+    letterSpacing: '.5px',
     marginRight: '.7rem',
   },
   period: {

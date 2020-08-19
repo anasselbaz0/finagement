@@ -46,7 +46,7 @@ const AddExerciseDrawer = (props) => {
                 .required('Required'),
         }),
         onSubmit: values => {
-            props.addExercise(values, props.token)
+            props.addExercise(values, props.userId, props.token)
         }
     });
     const {classes} = props;
@@ -87,12 +87,13 @@ const AddExerciseDrawer = (props) => {
 const mapStateToProps = state => {
     return {
         token: state.auth.token,
+        userId: state.auth.user.id,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        addExercise: (exercise, token) => dispatch(addExercise(exercise, token)),
+        addExercise: (exercise, userId, token) => dispatch(addExercise(exercise, userId, token)),
     }
 }
 

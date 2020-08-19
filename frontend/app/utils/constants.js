@@ -3,7 +3,7 @@ export const DAEMON = '@@saga-injector/daemon';
 export const ONCE_TILL_UNMOUNT = '@@saga-injector/once-till-unmount';
 
 export const MASTHEAD_HEIGHT = 7; // unit: vh
-export const SIDEBAR_WIDTH = 30;
+export const SIDEBAR_WIDTH = 20;
 
 
 

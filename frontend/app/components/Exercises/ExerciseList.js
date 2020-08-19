@@ -7,7 +7,7 @@ const styles = {
     marginTop: '1rem',
     display: 'grid',
     gridGap: '1rem',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
   },
 };
 

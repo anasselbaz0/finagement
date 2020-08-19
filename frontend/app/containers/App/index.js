@@ -14,8 +14,8 @@ const styles = {
     application: {
         height: '100vh',
         fontFamily: 'Barlow',
-        background: COLORS.c1,
-        color: COLORS.white,
+        background: COLORS.background,
+        color: COLORS.c1,
     }
 }
 

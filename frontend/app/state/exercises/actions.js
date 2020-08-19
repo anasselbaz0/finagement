@@ -3,12 +3,13 @@ export const ADD_EXERCISE_SUCCESS = 'ADD_EXERCISE_SUCCESS';
 export const ADD_EXERCISE_FAIL = 'ADD_EXERCISE_FAIL';
 
 
-export function addExercise(exercise, token) {
+export function addExercise(exercise, userId, token) {
     return {
         type: ADD_EXERCISE,
         payload: {
             exercise,
-            token
+            token,
+            userId
         },
     }
 }

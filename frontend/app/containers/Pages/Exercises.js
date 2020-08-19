@@ -10,11 +10,14 @@ import ExerciseList from "../../components/Exercises/ExerciseList";
 const styles = {
     bar: {
         display: 'flex',
-        justifyContent: 'flex-end',
-        backgroundColor: COLORS.whiteo,
+        justifyContent: 'space-between',
+        backgroundColor: COLORS.c3o,
     },
-    exerciseList: {
-
+    title: {
+        fontSize: '1rem',
+        fontWeight: 600,
+        margin: 'auto 0',
+        paddingLeft: '1rem'
     }
 }
 
@@ -24,6 +27,7 @@ function Exercises(props) {
     return (
         <div className={classes.page}>
             <div className={classes.bar}>
+                <div className={classes.title}> Exercises </div>
                 <Button onClick={() => setAddDrawerOpened(true)}>
                     Add Exercise
                 </Button>

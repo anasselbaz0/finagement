@@ -1,6 +1,8 @@
 let COLORS;
 export default COLORS = {
 
+    background: '#ececec',
+
     white: '#fff',
     whiteo: 'rgba(255,255,255,0.05)',
     lightGray: '#bdbcbc',
@@ -16,7 +18,7 @@ export default COLORS = {
 
     c1o: '#121617ef',
     c2o: '#313839ef',
-    c3o: '#255C69ef',
+    c3o: '#255C6933',
     c4o: '#027C99ef',
     c5o: '#03ADD5ef',
     c8o: 'rgba(229,250,255,0.94)',
