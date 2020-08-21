@@ -12,9 +12,11 @@ public class Exercise implements Serializable {
     private Integer month;
     private Integer year;
 
-    public Exercise() {
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
-    }
+    public Exercise() {}
 
     public Exercise(String title, Integer month, Integer year) {
         this.title = title;
@@ -52,5 +54,13 @@ public class Exercise implements Serializable {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
