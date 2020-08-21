@@ -9,12 +9,14 @@ import history from 'utils/history';
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import authReducer from "./state/auth/reducer";
+import exercisesReducer from "./state/exercises/reducer";
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
  */
 export default function createReducer(injectedReducers = {
     auth: authReducer,
+    exercises: exercisesReducer,
 }) {
     const rootReducer = combineReducers({
         global: globalReducer,

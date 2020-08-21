@@ -15,8 +15,8 @@ const styles = {
         maxWidth: '1000px',
         width: '50%',
         height: '100vh',
-        backgroundColor: COLORS.c1,
-        color: COLORS.white,
+        backgroundColor: COLORS.white,
+        color: COLORS.c0,
         padding: '1rem',
     },
     title: {

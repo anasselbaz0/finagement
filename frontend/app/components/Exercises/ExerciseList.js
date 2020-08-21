@@ -1,6 +1,8 @@
 import React from 'react';
 import ExerciseCard from './ExerciseCard';
 import withStyles from '@material-ui/core/styles/withStyles';
+import {connect} from 'react-redux';
+import {getExercisesByUserId} from "../../state/exercises/actions";
 
 const styles = {
   list: {
@@ -11,27 +13,35 @@ const styles = {
   },
 };
 
-function ExerciseList(props) {
+class ExerciseList extends React.Component {
 
-  const exercise = {
-    title: 'AUGUST 2020',
-    month: 8,
-    year: 2020,
-  }
+    componentDidMount() {
+        this.props.getExercisesByUserId(this.props.userId, this.props.token);
+    }
 
-  const {classes} = props;
-
-  return (
-      <div className={classes.list}>
-        <ExerciseCard exercise={exercise}/>
-        <ExerciseCard exercise={exercise}/>
-        <ExerciseCard exercise={exercise}/>
-        <ExerciseCard exercise={exercise}/>
-        <ExerciseCard exercise={exercise}/>
-        <ExerciseCard exercise={exercise}/>
-      </div>
-  );
+    render() {
+        const {classes} = this.props;
+        return (
+            <div className={classes.list}>
+                {this.props.exercises.map(exercise => <ExerciseCard key={exercise.id} exercise={exercise}/>)}
+            </div>
+        );
+    }
 
 }
 
-export default (withStyles(styles)(ExerciseList));
+const mapStateToProps = state => {
+    return {
+        token: state.auth.token,
+        userId: state.auth.user.id,
+        exercises: state.exercises.exercises,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getExercisesByUserId: (userId, token) => dispatch(getExercisesByUserId(userId, token)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ExerciseList));
