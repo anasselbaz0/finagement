@@ -11,7 +11,7 @@ const styles = {
     formInput: {
         width: '100%',
         '& label.Mui-focused': {
-            color: 'white',
+            color: 'lightGray',
         },
         '& .MuiFormLabel-root': {
             color: COLORS.lightGray
@@ -21,8 +21,8 @@ const styles = {
         },
         '& .MuiInput-root': {
             '& fieldset': {
-                borderColor: COLORS.white,
-                color: COLORS.white,
+                borderColor: COLORS.c0,
+                color: COLORS.c0,
             },
             '&:hover fieldset': {
                 borderColor: COLORS.lightGray,
@@ -34,7 +34,7 @@ const styles = {
             },
         },
         '& .MuiInputBase-input': {
-            color: COLORS.white,
+            color: COLORS.c1,
         }
     },
     error: {

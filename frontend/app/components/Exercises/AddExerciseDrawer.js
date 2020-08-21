@@ -5,8 +5,8 @@ import COLORS from "../../utils/colors";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {useFormik} from "formik";
 import * as Yup from 'yup';
-import TextInput from "../../components/Form/TextInput";
-import Button from "../../components/Button";
+import TextInput from "../Form/TextInput";
+import Button from "../General/Button";
 import {addExercise} from "../../state/exercises/actions";
 
 const styles = {
@@ -15,8 +15,8 @@ const styles = {
         maxWidth: '1000px',
         width: '50%',
         height: '100vh',
-        backgroundColor: COLORS.c1,
-        color: COLORS.white,
+        backgroundColor: COLORS.white,
+        color: COLORS.c0,
         padding: '1rem',
     },
     title: {
@@ -46,7 +46,7 @@ const AddExerciseDrawer = (props) => {
                 .required('Required'),
         }),
         onSubmit: values => {
-            props.addExercise(values, props.token)
+            props.addExercise(values, props.userId, props.token)
         }
     });
     const {classes} = props;
@@ -87,12 +87,13 @@ const AddExerciseDrawer = (props) => {
 const mapStateToProps = state => {
     return {
         token: state.auth.token,
+        userId: state.auth.user.id,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        addExercise: (exercise, token) => dispatch(addExercise(exercise, token)),
+        addExercise: (exercise, userId, token) => dispatch(addExercise(exercise, userId, token)),
     }
 }
 
